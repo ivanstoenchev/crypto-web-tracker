@@ -1,0 +1,30 @@
+.nav-menu {
+    max-width: 300px;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #070707;
+    border-right: 1px solid #393939;
+}
+a {
+    
+    text-decoration: none;
+}
+
+
+.nav-info {
+    height: 25px;
+    max-width: 300px;
+    text-align: center;    
+    margin: 50px 0 0 0;    
+    color: #fff;          
+    border-left: 5px solid #070707;         
+}
+
+.nav-info:hover{   
+    border-left: 5px solid #6dfe82;
+    background-color: #23262f;
+}
+

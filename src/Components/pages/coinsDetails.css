@@ -1,0 +1,38 @@
+.wrap-section {
+    padding: 100px;
+    display: flex;
+    flex-wrap: no-wrap;
+    flex-direction: row;    
+}
+
+.main-name-section {    
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    flex: 90%;
+}
+
+.main-price-section {
+    padding-left: 50px;
+    display: flex;
+    flex-direction: row;
+    flex: 80%;
+}
+
+.price-article {
+    padding-right: 40px;
+    color: #ffffff;
+}
+
+.article-change-price {
+    padding-right: 40px;
+    color: #ffffff;
+}
+
+.article-change-days {
+    color: #ffffff;
+}
+
+div {
+    padding: 0 0 10px 10px;
+}

@@ -1,0 +1,53 @@
+.tableStyle {
+    margin: 0 auto;
+    max-width: 1024px;
+    width: 100%;
+    border: 1px solid #393939;
+    border-radius: 5px;
+    color: #ffffff;
+    background-color: #070707;
+    border-spacing: 0;
+}
+
+tr:hover {
+    color: #ffffff;
+    background-color: #18181a;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #393939;
+}
+
+.rank-style {
+    width: 50px;
+}
+
+.name-style {
+    width: 150px;
+    text-align: left;
+}
+
+.price-style {
+    width: 200px;
+}
+
+h1 {
+    color: #ffffff;
+}
+
+.symbol-style {
+    color: grey;
+    font-size: 13px;
+}
+a {
+    text-decoration: none;    
+}
+
+.name-symbol-style {
+    width: 100%;
+}
+
+.text-name-style {
+    color: #ffffff;
+}
