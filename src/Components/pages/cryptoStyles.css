@@ -9,10 +9,15 @@
     border-spacing: 0;
 }
 
+.tr-style-header {
+    background-color: #18181a;
+}
+
 tr:hover {
     color: #ffffff;
     background-color: #18181a;
 }
+
 
 td {
     padding: 15px;
@@ -38,16 +43,53 @@ h1 {
 
 .symbol-style {
     color: grey;
-    font-size: 13px;
-}
-a {
-    text-decoration: none;    
+    font-size: 14px;
+    margin-left: 20px;
 }
 
-.name-symbol-style {
-    width: 100%;
+a {
+    text-decoration: none;
 }
 
 .text-name-style {
     color: #ffffff;
+}
+
+.rank-style {
+    width: 30px;
+    text-align: center;
+}
+
+.name-style {
+    max-width: 140px;
+    text-align: left;
+}
+
+.price-style {
+    max-width: 50rem;
+    text-align: right;
+}
+
+.market-style {
+    max-width: 50px;
+    text-align: right;
+}
+
+.volume-style {
+    max-width: 50px;
+    text-align: right;
+}
+
+.search-bar-style {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.search-bar {
+    padding: 13px;
+    font-size: 1.2rem;
+    color: #ffffff;
+    background-color: #18181a;
+    border-radius: 5px;
+    border: none;
 }

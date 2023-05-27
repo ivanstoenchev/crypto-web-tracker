@@ -1,15 +1,15 @@
 import React from "react"
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+// import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router";
 import "./coinsDetails.css"
 
 
-export default function CoinDetails() {
+export default function CoinDetails({ coins, coinLogo }) {
 
-    const { id } = useParams();    
-    const [dCoins, setdCoins] = useState();
-       
-    
+    const { id } = useParams();
+    const navigate = useNavigate();
+
+
     let cryptoName;
     let cryptoSymbol;
     let cryptoPrice;
@@ -22,29 +22,16 @@ export default function CoinDetails() {
     let percentChangeDays60;
     let percentChangeDays90;
     let marketCap;
-    let marketCapDominance;
+    let marketCapDominance;   
 
+    console.log(coinLogo);
 
-    const fetchCoinDetails = async () => {
-        try {
-            const res = await fetch(`http://localhost:8000/cryptocurrency`);
-            const coinData = await res.json();
-            setdCoins(coinData);
-        } catch (err) {
-            console.log(err);
-        }
+    const goBack = () => {
+        navigate("/cryptocurrency");
     };
 
-    useEffect(() => {
-        try {
-            fetchCoinDetails();
-        } catch (error) {
-            console.log(error);
-        };
-    }, []);    
-    
-    dCoins?.forEach(el => {
-        if(el.id === Number(id)) {
+    coins?.forEach(el => {
+        if (el.id === Number(id)) {
             cryptoName = el.name;
             cryptoSymbol = el.symbol;
             cryptoPrice = el.quote.USD.price;
@@ -61,15 +48,15 @@ export default function CoinDetails() {
         }
     });
 
-    
-     
+
+
     return (
         <>
-            <button>Go back</button>
+            <button onClick={goBack}>Go back</button>
             <section className="wrap-section">
 
                 <section className="main-name-section">
-                    <img src="" alt="logo" />
+                    <img src= '' alt= '' />
                     <h2><span>{cryptoName}</span> | <span>{cryptoSymbol}</span></h2>
                     <h4>${cryptoPrice?.toLocaleString('en')}</h4>
                 </section>

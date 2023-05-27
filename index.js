@@ -13,6 +13,7 @@ app.get("/", (req, res) => {
 const api = axios.create({
     method: 'GET',
     baseURL: 'https://pro-api.coinmarketcap.com',
+    
     headers: {
         'X-CMC_PRO_API_KEY': `${process.env.REACT_APP_COIN_API_KEY}`,
         'Accept': 'application/json',
@@ -26,8 +27,8 @@ app.get('/cryptocurrency', (req, res) => {
         .catch(err => console.log(err));
 });
 
-app.get('/coinDetail/slug', (req, res) => {
-    api('/v2/cryptocurrency/quotes/latest')
+app.get('/datalogo', (req, res) => {       
+    api(`/v2/cryptocurrency/info`)
         .then(response => response.data)
         .then(value => res.json(value.data))
         .catch(err => console.log(err));
