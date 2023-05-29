@@ -1,13 +1,33 @@
-import React from "react"
-// import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router";
+import axios from "axios"
 import "./coinsDetails.css"
 
 
-export default function CoinDetails({ coins, coinLogo }) {
+export default function CoinDetails({ coins }) {
 
     const { id } = useParams();
     const navigate = useNavigate();
+    const [coinLogo, setCoinLogo] = useState();
+
+
+    useEffect(() => {
+        const getId = () => {
+            const options = {
+                method: 'GET',
+                url: 'http://localhost:8000/datalogo',
+                params: { symbol: id },
+            }
+
+            axios.request(options).then((response) => {
+                setCoinLogo(response.data)
+            }).catch((error) => {
+                console.error(error)
+            })
+        };
+        getId();
+    }, [id]);
+
 
 
     let cryptoName;
@@ -22,16 +42,19 @@ export default function CoinDetails({ coins, coinLogo }) {
     let percentChangeDays60;
     let percentChangeDays90;
     let marketCap;
-    let marketCapDominance;   
+    let marketCapDominance;
+    let picLogo;
+    let picLogoName;
 
-    console.log(coinLogo);
-
+    picLogo = coinLogo?.data[id][0].logo;
+    picLogoName = coinLogo?.data[id][0].slug;
+    console.log(picLogoName);
     const goBack = () => {
         navigate("/cryptocurrency");
     };
 
     coins?.forEach(el => {
-        if (el.id === Number(id)) {
+        if (el.symbol === id) {
             cryptoName = el.name;
             cryptoSymbol = el.symbol;
             cryptoPrice = el.quote.USD.price;
@@ -48,40 +71,57 @@ export default function CoinDetails({ coins, coinLogo }) {
         }
     });
 
-
-
     return (
         <>
             <button onClick={goBack}>Go back</button>
             <section className="wrap-section">
 
                 <section className="main-name-section">
-                    <img src= '' alt= '' />
-                    <h2><span>{cryptoName}</span> | <span>{cryptoSymbol}</span></h2>
+                    <img src={picLogo} alt={picLogoName} />
+                    <h2><span>{cryptoName}</span>|<span>{cryptoSymbol}</span></h2>
                     <h4>${cryptoPrice?.toLocaleString('en')}</h4>
                 </section>
 
                 <section className="main-price-section">
                     <article className="price-article">
-                        <div>${hoursPrice24?.toLocaleString('en')}</div>
-                        <div>${volumeChange24?.toLocaleString('en')}</div>
+                        <div className="price-style-hours">
+                            <p>${hoursPrice24?.toLocaleString('en')}</p>
+                        </div>
+                        <div className="style-volume-change">
+                            <p>${volumeChange24?.toLocaleString('en')}</p>
+                        </div>
                     </article>
 
                     <article className="article-change-price">
-                        <div>{percentChangeHour1?.toFixed(2)}%</div>
-                        <div>{percentChangeHour24?.toFixed(2)}%</div>
-                        <div>{percentChangeDays7?.toFixed(2)}%</div>
+                        <div className="style-percent-hours">
+                            <p>{percentChangeHour1?.toFixed(2)}%</p>
+                        </div>
+                        <div className="style-persent-twofour">
+                            <p>{percentChangeHour24?.toFixed(2)}%</p>
+                        </div>
+                        <div className="style-persent-seven-days">
+                            <p>{percentChangeDays7?.toFixed(2)}%</p>
+                        </div>
                     </article>
 
                     <article className="article-change-days">
-                        <div>{percentChangeDays30?.toFixed(2)}%</div>
-                        <div>{percentChangeDays60?.toFixed(2)}%</div>
-                        <div>{percentChangeDays90?.toFixed(2)}%</div>
-                        <div>${marketCap?.toLocaleString('en')}</div>
-                        <div>${marketCapDominance?.toLocaleString('en')}</div>
+                        <div className="styrl-persen-thirty-days">
+                            <p>{percentChangeDays30?.toFixed(2)}%</p>
+                        </div>
+                        <div className="style-change-sixty-days">
+                            <p>{percentChangeDays60?.toFixed(2)}%</p>
+                        </div>
+                        <div className="style-change-ninety-days">
+                            <p>{percentChangeDays90?.toFixed(2)}%</p>
+                        </div>
+                        <div className="style-market-cap">
+                            <p>${marketCap?.toLocaleString('en')}</p>
+                        </div>
+                        <div className="style-market-cap-dominance">
+                            <p>${marketCapDominance?.toLocaleString('en')}</p>
+                        </div>
                     </article>
                 </section>
-
             </section>
         </>
     )

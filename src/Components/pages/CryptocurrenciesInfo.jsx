@@ -3,12 +3,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import './cryptoStyles.css'
 
-export default function CryptocurrenciesInfo({ coins, coinLogo }) {
+export default function CryptocurrenciesInfo({ coins }) {
 
     const [cSearch, setCSearch] = useState("");
 
     if (!coins) return null;
-    console.log(coinLogo)
+    
     return (
         <>
             <section className="section-style">
@@ -31,7 +31,7 @@ export default function CryptocurrenciesInfo({ coins, coinLogo }) {
                         {coins?.filter((item) => item.name.toLowerCase().includes(cSearch.toLowerCase())).map((coin) => (
                             <tr key={coin.id}>
                                 <td className="rank-style">{coin.cmc_rank}</td>
-                                <td className="name-style"> <Link to={`/cryptocurrency/${coin.id}`}><span className="text-name-style">{coin.name}</span><span className="symbol-style">{coin.symbol}</span></Link></td>
+                                <td className="name-style"> <Link to={`/cryptocurrency/${coin.symbol}`}><span className="text-name-style">{coin.name}</span><span className="symbol-style">{coin.symbol}</span></Link></td>
                                 <td className="price-style">${coin.quote.USD.price.toLocaleString('en')}</td>
                                 <td className="market-style">${coin.quote.USD.market_cap.toLocaleString('en')}</td>
                                 <td className="volume-style">${coin.quote.USD.volume_24h.toLocaleString('en')}</td>

@@ -9,14 +9,14 @@
     color: #ffffff;
     display: flex;
     flex-direction: column;
-    flex: 90%;
+    flex: 0 1 50%;
 }
 
 .main-price-section {
     padding-left: 50px;
     display: flex;
     flex-direction: row;
-    flex: 80%;
+    flex-grow: 1 0 60px;
 }
 
 .price-article {
@@ -37,3 +37,7 @@ div {
     padding: 0 0 10px 10px;
 }
 
+img {
+    width: 64px;
+    height: 64px;
+}

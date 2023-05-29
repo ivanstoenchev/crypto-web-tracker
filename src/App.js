@@ -10,9 +10,6 @@ import './App.css';
 function App() {
 
   const [coins, setCoins] = useState();
-  const [coinLogo, setCoinLogo] = useState();
-
-
 
   async function fetchCryptoCurrencies() {
     try {
@@ -22,32 +19,24 @@ function App() {
     } catch (err) {
       console.log(err);
     }
-  };
-
-  async function fetchCryptoCurrenciesLogo() {
-    try {
-      const res = await fetch('http://localhost:8000/datalogo');
-      const data = await res.json();
-      setCoinLogo(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  }; 
 
   useEffect(() => {
     try {
       fetchCryptoCurrencies();
-      fetchCryptoCurrenciesLogo();
+      
     } catch (error) {
       console.log(error);
     };
   }, []);
 
+  
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' exact element={<AppLayout />}>
-          <Route path='/cryptocurrency/:id' element={<CoinDetails coins={coins} coinLogo={coinLogo} />} />
+          <Route path='/cryptocurrency/:id' element={<CoinDetails coins={coins} />} />
           <Route path='/cryptocurrency' element={<CryptocurrenciesInfo coins={coins} />} />
           <Route path='/crytonews' element={<CryptocurrenciesNews />} />
         </Route>
